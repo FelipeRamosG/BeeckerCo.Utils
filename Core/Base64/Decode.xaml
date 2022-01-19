@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1721,1230</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1539,1224</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="44">
@@ -56,7 +56,7 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="526,1081" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="526,1159" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="FullPath" />
       <Variable x:TypeArguments="x:Boolean" Name="PathExists" />
@@ -67,14 +67,14 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:PathExists DisplayName="Path Exists" Exists="[PathExists]" sap:VirtualizedContainerService.HintSize="484,89" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[FilePath]" PathType="Folder" />
-    <If Condition="[not PathExists]" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_1">
-      <If.Then>
-        <Throw Exception="[New Exception(&quot;The file name must contain extencion&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
-      </If.Then>
-    </If>
-    <If Condition="[not Filename.Contains(&quot;.&quot;)]" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[not PathExists]" sap:VirtualizedContainerService.HintSize="484,247" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Throw Exception="[New Exception(&quot;The given path does not exists&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_2" />
+      </If.Then>
+    </If>
+    <If Condition="[not Filename.Contains(&quot;.&quot;)]" sap:VirtualizedContainerService.HintSize="484,247" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Throw Exception="[New Exception(&quot;The file name must contain extencion&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
       </If.Then>
     </If>
     <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_1">
@@ -95,12 +95,8 @@
     </Assign>
     <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim pdfBytes As Byte() = Convert.FromBase64String(strWork_PDF)&#xA;File.WriteAllBytes(FilePath,pdfBytes)" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="484,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="strWork_PDF">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Base64" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="FilePath">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="FullPath" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="strWork_PDF">[Base64]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="FilePath">[FullPath]</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
   </Sequence>

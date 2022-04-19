@@ -1,0 +1,217 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Change_QueueItem_Priority" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property Name="OrchestratorURL" Type="InArgument(x:String)" />
+    <x:Property Name="OrchestratorQueueName" Type="InArgument(x:String)" />
+    <x:Property Name="Priority" Type="InArgument(x:String)" />
+    <x:Property Name="TenantName" Type="InArgument(x:String)" />
+    <x:Property Name="LoginCookie" Type="InArgument(x:String)" />
+    <x:Property Name="FolderID" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1159,1584</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Change_QueueItem_Priority_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="30">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="27">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Update Priority" sap:VirtualizedContainerService.HintSize="539,1519" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="RESULT" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="The QueueItem ID, usualy 9 characters" Default="129950420" Name="QueueItemId" />
+      <Variable x:TypeArguments="x:String" Name="SpecificC" />
+      <Variable x:TypeArguments="x:String" Name="ReferDate" />
+      <Variable x:TypeArguments="x:String" Name="DueDate" />
+      <Variable x:TypeArguments="x:String" Name="Reference" />
+      <Variable x:TypeArguments="x:String" Name="Progress" />
+      <Variable x:TypeArguments="x:Int32" Name="StatusCode" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign DisplayName="get queueItem Id" sap:VirtualizedContainerService.HintSize="497,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[QueueItemId]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[TransactionItem.Id.ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:LogMessage DisplayName="Log Message - Init" sap:VirtualizedContainerService.HintSize="497,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Changing Priority to Queue item with ID &quot;+QueueItemId]" />
+    <Assign DisplayName="Init Temp Value" sap:VirtualizedContainerService.HintSize="497,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[SpecificC]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:Object)" CurrentIndex="{x:Null}" DisplayName="For Each Specific Content" sap:VirtualizedContainerService.HintSize="497,184" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[TransactionItem.SpecificContent]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, x:Object)">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="scg:KeyValuePair(x:String, x:Object)" Name="Value" />
+          </ActivityAction.Argument>
+          <Assign DisplayName="Get current Content" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[SpecificC]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[SpecificC+Chr(34)+Value.Key+chr(34)+":"+Chr(34)+Value.Value.ToString+chr(34)+","]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <Assign DisplayName="Init SpecificC" sap:VirtualizedContainerService.HintSize="497,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[SpecificC]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[SpecificC.Substring(0,SpecificC.Length-1)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Init ReferDate" sap:VirtualizedContainerService.HintSize="497,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[ReferDate]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[if(String.IsNullOrEmpty(TransactionItem.DeferDate.ToString),"null",chr(34)+TransactionItem.DeferDate.ToString+chr(34))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Init DueDate" sap:VirtualizedContainerService.HintSize="497,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[DueDate]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[if(String.IsNullOrEmpty(TransactionItem.DueDate.ToString),"null",chr(34)+TransactionItem.DueDate.ToString+chr(34))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Init Reference" sap:VirtualizedContainerService.HintSize="497,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Reference]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[if(String.IsNullOrEmpty(TransactionItem.Reference.ToString),"null",chr(34)+TransactionItem.Reference.ToString+chr(34))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Init Progress" sap:VirtualizedContainerService.HintSize="497,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Progress]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[if(String.IsNullOrEmpty(TransactionItem.Progress.ToString),"null",chr(34)+TransactionItem.Progress.ToString+chr(34))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" Body="[&quot;{ &quot;&quot;Name&quot;&quot;: &quot;&quot;&quot;+OrchestratorQueueName+&quot;&quot;&quot;, &quot;&quot;Priority&quot;&quot;: &quot;&quot;&quot;+Priority+&quot;&quot;&quot;, &quot;&quot;SpecificContent&quot;&quot;: {&quot;+SpecificC+&quot;}, &quot;&quot;DeferDate&quot;&quot;: &quot;+ReferDate+&quot;, &quot;&quot;DueDate&quot;&quot;: &quot;+DueDate+&quot;, &quot;&quot;RiskSlaDate&quot;&quot;: null, &quot;&quot;Reference&quot;&quot;: &quot;+Reference+&quot;, &quot;&quot;Progress&quot;&quot;: &quot;+Progress+&quot;} &quot;]" BodyFormat="" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="HTTP Request - Update Priority" EnableSSLVerification="True" EndPoint="[OrchestratorURL+&quot;/odata/QueueItems(&quot;+QueueItemId+&quot;)&quot;]" sap:VirtualizedContainerService.HintSize="497,57" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="PUT" Result="[RESULT]" StatusCode="[StatusCode]" TimeoutMS="6000">
+      <ui:HttpClient.Attachments>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Attachments>
+      <ui:HttpClient.Cookies>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Cookies>
+      <ui:HttpClient.Headers>
+        <InArgument x:TypeArguments="x:String" x:Key="Content-Type">
+          <Literal x:TypeArguments="x:String">application/json</Literal>
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-TenantName">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="TenantName" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Authorization">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Bearer &quot;+LoginCookie" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-OrganizationUnitId">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="FolderID" />
+        </InArgument>
+      </ui:HttpClient.Headers>
+      <ui:HttpClient.Parameters>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Parameters>
+      <ui:HttpClient.UrlSegments>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.UrlSegments>
+    </ui:HttpClient>
+    <Switch x:TypeArguments="x:Int32" DisplayName="Switch Change Priority Status Code" Expression="[StatusCode]" sap:VirtualizedContainerService.HintSize="497,275" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+      <Switch.Default>
+        <Sequence sap:VirtualizedContainerService.HintSize="376,245" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[RESULT]" />
+          <Throw DisplayName="Throw Update Error" Exception="[New SystemException(&quot;Error while updating queue item&quot;)]" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </Sequence>
+      </Switch.Default>
+      <ui:LogMessage x:Key="200" DisplayName="Log Message - End Process" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;Changed Priority to Queue item with ID &quot;+QueueItemId+Environment.NewLine+&quot;New Priority: &quot;+Priority]" />
+    </Switch>
+  </Sequence>
+</Activity>

@@ -3,9 +3,8 @@
   "description": "BeeckerCo Core Libraries",
   "main": "NewActivity.xaml",
   "dependencies": {
-    "SiVale.Utils": "1.0.10",
-    "UiPath.System.Activities": "20.10.4",
-    "UiPath.WebAPI.Activities": "1.7.0"
+    "UiPath.System.Activities": "21.10.4",
+    "UiPath.WebAPI.Activities": "1.11.0"
   },
   "webServices": [],
   "entitiesStores": [],
@@ -14,7 +13,9 @@
   "projectVersion": "1.0.1-alpha.3",
   "runtimeOptions": {
     "autoDispose": false,
+    "netFrameworkLazyLoading": false,
     "isPausable": true,
+    "isAttended": false,
     "requiresUserInteraction": true,
     "supportsPersistence": false,
     "excludedLoggedData": [
@@ -23,7 +24,8 @@
     ],
     "executionType": "Workflow",
     "readyForPiP": false,
-    "startsInPiP": false
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": false
   },
   "designOptions": {
     "projectProfile": "Developement",

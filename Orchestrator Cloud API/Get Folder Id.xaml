@@ -1,15 +1,35 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Get_Folder_Id" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="LoginCookie" Type="InArgument(x:String)" />
-    <x:Property Name="OrchestratorURL" Type="InArgument(x:String)" />
-    <x:Property Name="TenantName" Type="InArgument(x:String)" />
-    <x:Property Name="FolderID" Type="OutArgument(x:String)" />
-    <x:Property Name="OrchestratorFolderName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="The Cookie given by Login Module" Name="LoginCookie" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="The Orchestrator Cloud URL.Usually ends with &quot;/orchestrator_/&quot;" Name="OrchestratorURL" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="The Tenant Name that storages the folder to look for" Name="TenantName" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="The folder Id for the OrchestratorFolderName" Name="FolderID" Type="OutArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="The Orchestrator Folder Name to look for" Name="OrchestratorFolderName" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1159,1897</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1171,1608</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Get_Folder_Id_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="35">
@@ -79,10 +99,9 @@
       <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="getFolder" sap:VirtualizedContainerService.HintSize="604,1832" sap2010:WorkflowViewState.IdRef="Sequence_4">
+  <Sequence DisplayName="getFolder" sap:VirtualizedContainerService.HintSize="604,1543" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="StrGetFolderResponse" />
       <Variable x:TypeArguments="njl:JObject" Name="JsonFolderResponse" />
@@ -104,15 +123,9 @@
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.Cookies>
       <ui:HttpClient.Headers>
-        <InArgument x:TypeArguments="x:String" x:Key="Content-Type">
-          <Literal x:TypeArguments="x:String">application/json</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-TenantName">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="TenantName" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="Authorization">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Bearer &quot;+LoginCookie" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Content-Type">application/json</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-TenantName">[TenantName]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Authorization">["Bearer "+LoginCookie]</InArgument>
       </ui:HttpClient.Headers>
       <ui:HttpClient.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
@@ -121,7 +134,7 @@
         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
       </ui:HttpClient.UrlSegments>
     </ui:HttpClient>
-    <Switch x:TypeArguments="x:Int32" DisplayName="Switch Get Folders Status Code" Expression="[StatusCode]" sap:VirtualizedContainerService.HintSize="562,427" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+    <Switch x:TypeArguments="x:Int32" DisplayName="Switch Get Folders Status Code" Expression="[StatusCode]" sap:VirtualizedContainerService.HintSize="562,138" sap2010:WorkflowViewState.IdRef="Switch`1_1">
       <Switch.Default>
         <Sequence sap:VirtualizedContainerService.HintSize="376,245" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
